@@ -24,6 +24,9 @@ NSString* const ImageRegexp = @"(http://images.4chan.org/[a-z0-9]+/src/(?:[0-9]*
 
         [textField setEnabled: NO];
         [fetchButton setImage:nil];
+        [textField setHidden:YES];
+        [determinateProgressIndicator setHidden:NO];
+        [progressIndicator setHidden: NO];
         [progressIndicator startAnimation: self];
 
         self.totalCount = [imageURLs count];
@@ -116,9 +119,10 @@ NSString* const ImageRegexp = @"(http://images.4chan.org/[a-z0-9]+/src/(?:[0-9]*
 
 - (void)downloadDidFinish:(NSURLDownload *)download {
     [download release];
-    NSLog(@"%@",@"downloadDidFinish");
 
     self.currentCount = self.currentCount + 1;
+    float floatVal = (float) (((float)self.currentCount / (float)self.totalCount)*100.0);
+    [determinateProgressIndicator setDoubleValue:floatVal];
     if (self.currentCount >= self.totalCount) {
         self.currentCount = 0;
         [self openIndexSheet];
@@ -128,8 +132,11 @@ NSString* const ImageRegexp = @"(http://images.4chan.org/[a-z0-9]+/src/(?:[0-9]*
 
 - (void)allDone {
     [textField setEnabled: YES];
+    [textField setHidden:NO];
+    [determinateProgressIndicator setHidden:YES];
     [fetchButton setImage:[NSImage imageNamed:@"NSActionTemplate"]];
     [progressIndicator stopAnimation: self];
+    [progressIndicator setHidden: YES];
 }
 
 - (BOOL)openIndexSheet {

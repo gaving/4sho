@@ -10,6 +10,7 @@
     IBOutlet NSTextField *textField;
     IBOutlet NSButton *fetchButton;
     IBOutlet NSProgressIndicator *progressIndicator;
+    IBOutlet NSProgressIndicator *determinateProgressIndicator;
     int currentCount;
     int totalCount;
 }
