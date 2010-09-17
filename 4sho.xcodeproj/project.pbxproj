@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		256AC3DA0F4B6AC300CF3369 /* _sheetAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* _sheetAppDelegate.m */; };
+		86D39B44116A6BCF00780462 /* BWToolkitFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86D39B43116A6BCF00780462 /* BWToolkitFramework.framework */; };
+		86D39B75116A6BD400780462 /* BWToolkitFramework.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86D39B43116A6BCF00780462 /* BWToolkitFramework.framework */; };
+		86E58AAC1165E22B009D41A1 /* green_creature.icns in Resources */ = {isa = PBXBuildFile; fileRef = 86E58AAB1165E22B009D41A1 /* green_creature.icns */; };
 		86E96C5B115EC924003F07CE /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E96C5A115EC924003F07CE /* ApplicationController.m */; };
 		86E96D50115EDC56003F07CE /* OpenIndexSheetForDirectory.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 86E96D4D115EDC33003F07CE /* OpenIndexSheetForDirectory.scpt */; };
 		86E96DB3115EE696003F07CE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E96DB2115EE696003F07CE /* RegexKitLite.m */; };
@@ -16,6 +19,19 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		86D39AE9116A5F8400780462 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				86D39B75116A6BD400780462 /* BWToolkitFramework.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -28,13 +44,15 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		86D39B43116A6BCF00780462 /* BWToolkitFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWToolkitFramework.framework; path = /Users/gavin/Downloads/BWToolkit/BWToolkitFramework.framework; sourceTree = "<absolute>"; };
+		86E58AAB1165E22B009D41A1 /* green_creature.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = green_creature.icns; sourceTree = "<group>"; };
 		86E96C59115EC924003F07CE /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationController.h; sourceTree = "<group>"; };
 		86E96C5A115EC924003F07CE /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationController.m; sourceTree = "<group>"; };
 		86E96D4D115EDC33003F07CE /* OpenIndexSheetForDirectory.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.scpt; name = OpenIndexSheetForDirectory.scpt; path = Resources/OpenIndexSheetForDirectory.scpt; sourceTree = "<group>"; };
 		86E96DB1115EE696003F07CE /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = Classes/RegexKitLite.h; sourceTree = "<group>"; };
 		86E96DB2115EE696003F07CE /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = Classes/RegexKitLite.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* _sheet-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "_sheet-Info.plist"; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* 4sheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 4sheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* 4sho.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 4sho.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				86D39B44116A6BCF00780462 /* BWToolkitFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +73,8 @@
 			children = (
 				86E96DAD115EE679003F07CE /* RegexKitLite */,
 				256AC3D80F4B6AC300CF3369 /* _sheetAppDelegate.h */,
+				86E96C59115EC924003F07CE /* ApplicationController.h */,
+				86E96C5A115EC924003F07CE /* ApplicationController.m */,
 				256AC3D90F4B6AC300CF3369 /* _sheetAppDelegate.m */,
 			);
 			name = Classes;
@@ -63,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				86D39B43116A6BCF00780462 /* BWToolkitFramework.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -80,7 +102,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* 4sheet.app */,
+				8D1107320486CEB800E47090 /* 4sho.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -93,8 +115,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				86E96C59115EC924003F07CE /* ApplicationController.h */,
-				86E96C5A115EC924003F07CE /* ApplicationController.m */,
 			);
 			name = 4sheet;
 			sourceTree = "<group>";
@@ -111,6 +131,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				86E58AAB1165E22B009D41A1 /* green_creature.icns */,
 				86E96D4D115EDC33003F07CE /* OpenIndexSheetForDirectory.scpt */,
 				8D1107310486CEB800E47090 /* _sheet-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -140,22 +161,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* 4sheet */ = {
+		8D1107260486CEB800E47090 /* 4sho */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "4sheet" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "4sho" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				86D39AE9116A5F8400780462 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = 4sheet;
+			name = 4sho;
 			productInstallPath = "$(HOME)/Applications";
 			productName = 4sheet;
-			productReference = 8D1107320486CEB800E47090 /* 4sheet.app */;
+			productReference = 8D1107320486CEB800E47090 /* 4sho.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -163,14 +185,14 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "4sheet" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "4sho" */;
 			compatibilityVersion = "Xcode 3.1";
 			hasScannedForEncodings = 1;
 			mainGroup = 29B97314FDCFA39411CA2CEA /* 4sheet */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* 4sheet */,
+				8D1107260486CEB800E47090 /* 4sho */,
 			);
 		};
 /* End PBXProject section */
@@ -183,6 +205,7 @@
 				86E96D50115EDC56003F07CE /* OpenIndexSheetForDirectory.scpt in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				86E58AAC1165E22B009D41A1 /* green_creature.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +250,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads/BWToolkit\"",
+					"\"$(SRCROOT)/../../.Trash\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -236,7 +264,7 @@
 				INFOPLIST_FILE = "_sheet-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-licucore";
-				PRODUCT_NAME = 4sheet;
+				PRODUCT_NAME = 4sho;
 			};
 			name = Debug;
 		};
@@ -245,13 +273,18 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../Downloads/BWToolkit\"",
+					"\"$(SRCROOT)/../../.Trash\"",
+				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = _sheet_Prefix.pch;
 				INFOPLIST_FILE = "_sheet-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = "-licucore";
-				PRODUCT_NAME = 4sheet;
+				PRODUCT_NAME = 4sho;
 			};
 			name = Release;
 		};
@@ -284,7 +317,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "4sheet" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "4sho" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -293,7 +326,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "4sheet" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "4sho" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

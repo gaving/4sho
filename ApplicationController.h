@@ -5,23 +5,29 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface ApplicationController : NSObject {
-    IBOutlet NSTextField *textField;
+    IBOutlet NSComboBox *comboBox;
     IBOutlet NSButton *fetchButton;
     IBOutlet NSProgressIndicator *progressIndicator;
     IBOutlet NSProgressIndicator *determinateProgressIndicator;
+    IBOutlet NSPopUpButton *viewButton;
     int currentCount;
     int totalCount;
+    bool isDownloading;
+    NSString *board;
+    NSMutableArray *urls;
 }
 
 @property int currentCount;
 @property int totalCount;
+@property bool isDownloading;
+@property (retain) NSString *board;
 
-- (void)processFetch;
+- (void)registerMyApp;
+- (void)openViewMethod;
 - (IBAction)fetch:(id)sender;
-- (NSArray *)getImageURLs;
+- (BOOL)findImages;
 - (void)downloadURL:(NSArray *)urls;
-- (BOOL)openIndexSheet;
+- (void)finished;
 
 @end
