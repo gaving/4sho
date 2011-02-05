@@ -5,6 +5,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+
+@interface NSString (Empty)
+    - (BOOL) empty;
+@end
+
 @interface ApplicationController : NSObject {
     IBOutlet NSComboBox *comboBox;
     IBOutlet NSButton *fetchButton;
@@ -15,7 +20,6 @@
     int totalCount;
     bool isDownloading;
     NSString *board;
-    NSMutableArray *urls;
 }
 
 @property int currentCount;
@@ -23,11 +27,25 @@
 @property bool isDownloading;
 @property (retain) NSString *board;
 
+- (IBAction)fetch:(id)sender;
+- (IBAction)preferences:(id)sender;
+
+- (BOOL)startFetching;
+
+- (NSString *)createTemporaryDirectory;
+- (void)processImages:(NSArray *)imageURLs;
+- (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent;
+
 - (void)registerMyApp;
 - (void)openViewMethod;
-- (IBAction)fetch:(id)sender;
-- (BOOL)findImages;
+- (void)performAsyncLoadWithURL:(NSURL*)url;
 - (void)downloadURL:(NSArray *)urls;
 - (void)finished;
+
+- (void)openIndexSheet;
+- (void)openDownloadDirectory;
+- (void)openViewMethod;
+
++ (void)showError:(NSString *)title withMessage:(NSString *)info;
 
 @end

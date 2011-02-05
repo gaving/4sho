@@ -1,10 +1,12 @@
 //
 //  ApplicationController.m
-//  that eet
+//  4sho
 //
 
 #import "ApplicationController.h"
 #import "RegexKitLite.h"
+#import "PreferencesController.h"
+#include <Carbon/Carbon.h>
 
 @implementation NSString (Empty)
     - (BOOL) empty{
@@ -19,23 +21,16 @@
 @synthesize isDownloading;
 @synthesize board;
 
-NSString* const DownloadDirectory = @"/Users/gavin/Desktop/images";
 NSString* const ImageRegexp = @"(http://images.4chan.org/[a-z0-9]+/src/(?:[0-9]*).(?:jpg|png|gif))";
 NSString* const BoardRegexp = @"^http://boards.4chan.org/";
 
 - (void)awakeFromNib {
-
-    urls = [NSArray arrayWithObjects:@"Jazz", @"Acid", @"Funk", @"Classic Rock", @"Rock", @"Pop", @"R&B", @"Hip Hop",
-         @"Trip Hop", @"Classical", @"Swing", @"Metal", @"Country", @"Folk", @"Grunge", @"Alternative", nil];
-    urls = [[urls sortedArrayUsingSelector:@selector(compare:)] retain];
 
     NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
     NSString *type = [pasteboard availableTypeFromArray:[NSArray arrayWithObject:NSStringPboardType]];
     if (type != nil) {
         NSString *contents = [pasteboard stringForType:type];
         if ((contents != nil) && [contents isMatchedByRegex:BoardRegexp]) {
-
-            /* Set initial combo value if it looks like a proper URL */
             [comboBox setObjectValue: contents];
         }
     }
@@ -45,6 +40,7 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
 
 - (void)registerMyApp {
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
 }
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
@@ -54,17 +50,13 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
     NSLog(@"Passed %@", url);
 
     if ((url != nil) && [url isMatchedByRegex:BoardRegexp]) {
-
-        /* Set initial combo value if it looks like a proper URL */
         [comboBox setObjectValue: url];
         [self fetch:nil];
     }
 }
 
 - (IBAction)fetch:(id)sender {
-	
-	NSLog(@"%@", [[viewButton selectedItem] title]);
-	//return;
+
     if (!self.isDownloading) {
         [comboBox setEnabled: NO];
         [fetchButton setImage:nil];
@@ -77,7 +69,7 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
         self.currentCount = 0;
         self.isDownloading = true;
 
-        if (![self findImages]) {
+        if (![self startFetching]) {
             [self finished];
         }
     } else {
@@ -95,11 +87,8 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
 
 - (void)processImages:(NSArray *)imageURLs {
     if (imageURLs && ([imageURLs count] > 0)) {
-
-        /* Download all the URLs to the above directory */
         [self downloadURL:imageURLs];
     } else {
-        NSLog(@"TODO: Return this to a sane state");
         [self finished];
     }
 }
@@ -111,32 +100,32 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
         name = [NSString stringWithFormat:@"%0.0f", [[NSDate date] timeIntervalSince1970]];
     }
 
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *folder = [DownloadDirectory stringByAppendingPathComponent: name];
-    if ([fileManager fileExistsAtPath: folder] == NO) {
-       [fileManager createDirectoryAtPath: folder withIntermediateDirectories: NO attributes: nil error: nil];
+    NSString *downloadDestination = [[NSUserDefaults standardUserDefaults] stringForKey:@"downloadDestination"];
+    if (downloadDestination) {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *folder = [[downloadDestination stringByExpandingTildeInPath] stringByAppendingPathComponent: name];
+        if ([fileManager fileExistsAtPath: folder] == NO) {
+           [fileManager createDirectoryAtPath: folder withIntermediateDirectories: NO attributes: nil error: nil];
+        }
     }
 
     return name;
 }
 
-- (BOOL)findImages {
+- (BOOL)startFetching {
 
     NSString *urlString = [comboBox stringValue];
     NSURL *url;
 
     if (![urlString empty]) {
-
-        /* Fetch the index page of the board we want */
         url = [NSURL URLWithString:urlString];
-
         if (!url) {
-            NSLog(@"A valid URL was not given");
+            [ApplicationController showError:@"An error occurred" withMessage:@"Please enter a valid URL."];
             NSBeep();
             return NO;
         }
     } else {
-        NSLog(@"You must provide an URL");
+        [ApplicationController showError:@"An error occurred" withMessage:@"Please enter a URL."];
         NSBeep();
         return NO;
     }
@@ -151,7 +140,7 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
     return YES;
 }
 
-- (void) performAsyncLoadWithURL:(NSURL*)url {
+- (void)performAsyncLoadWithURL:(NSURL*)url {
     NSAutoreleasePool * pool =[[NSAutoreleasePool alloc] init];
     NSData* boardData = [NSData dataWithContentsOfURL:url options:NSMappedRead error:nil];
     NSString *contents = [[NSString alloc] initWithData:boardData encoding:NSASCIIStringEncoding];
@@ -170,20 +159,22 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
 }
 
 - (void)loadDidFinishWithData:(NSData*)boardData {
-    /* Stub */
 }
 
 - (void)downloadURL:(NSArray *)urls {
-
-    /* Create a temporary directory to store the images */
     NSString* folder = [self createTemporaryDirectory];
     if (!folder) {
         return;
     }
 
+    NSString *downloadDestination = [[NSUserDefaults standardUserDefaults] stringForKey:@"downloadDestination"];
+    if (!downloadDestination) {
+        return;
+    }
+
     /* Alias this to the most recent directory for the apple script */
-    NSString *destPath = [DownloadDirectory stringByAppendingPathComponent:folder];
-    NSString *aliasPath = [DownloadDirectory stringByAppendingPathComponent: @"recent"];
+    NSString *destPath =  [[downloadDestination stringByExpandingTildeInPath] stringByAppendingPathComponent:folder];
+    NSString *aliasPath = [[downloadDestination stringByExpandingTildeInPath] stringByAppendingPathComponent:@"recent"];
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
 
@@ -244,10 +235,7 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
     if (self.currentCount >= self.totalCount) {
         self.currentCount = 0;
         [self finished];
-
         if (self.totalCount > 0) {
-
-            /* Actually appeared to have downloaded something */
             [self openViewMethod];
         }
     }
@@ -264,65 +252,73 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
     [progressIndicator setHidden: YES];
 }
 
+
+- (IBAction)preferences:(id)sender {
+    [[PreferencesController sharedPrefsWindowController] showWindow:nil];
+    (void)sender;
+}
+
+- (void)openIndexSheet {
+    NSLog(@"Launching index sheet");
+    NSDictionary *errors = [NSDictionary dictionary];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"OpenIndexSheetForDirectory" ofType:@"scpt"];
+    if (path) {
+        NSAppleScript *script = [[[NSAppleScript alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:&errors]autorelease];
+        NSAppleEventDescriptor *firstParameter = [NSAppleEventDescriptor descriptorWithString:@"/Users/gavin/Desktop/images/recent"];
+        NSAppleEventDescriptor *parameters = [NSAppleEventDescriptor listDescriptor];
+        [parameters insertDescriptor:firstParameter atIndex:1];
+        ProcessSerialNumber psn = { 0, kCurrentProcess };
+        NSAppleEventDescriptor *target = [NSAppleEventDescriptor descriptorWithDescriptorType:typeProcessSerialNumber
+                                                                                        bytes:&psn
+                                                                                       length:sizeof(ProcessSerialNumber)];
+        NSAppleEventDescriptor *handler = [NSAppleEventDescriptor descriptorWithString:[@"show_index_sheet" lowercaseString]];
+        NSAppleEventDescriptor *event = [NSAppleEventDescriptor appleEventWithEventClass:kASAppleScriptSuite
+                                                                                 eventID:kASSubroutineEvent
+                                                                        targetDescriptor:target
+                                                                                returnID:kAutoGenerateReturnID
+                                                                           transactionID:kAnyTransactionID];
+        [event setParamDescriptor:handler forKeyword:keyASSubroutineName];
+        [event setParamDescriptor:parameters forKeyword:keyDirectObject];
+        if (![script executeAppleEvent:event error:&errors]) {
+            NSLog(@"%@", errors);
+        }
+        [script release];
+    }
+}
+
+- (void)openDownloadDirectory {
+    NSString *downloadDestination = [[NSUserDefaults standardUserDefaults] stringForKey:@"downloadDestination"];
+    if (downloadDestination) {
+        NSString *folder = [[downloadDestination stringByExpandingTildeInPath] stringByAppendingPathComponent: self.board];
+        if (folder != nil) {
+            [[NSWorkspace sharedWorkspace] openFile:folder];
+        }
+    }
+}
+
 - (void)openViewMethod {
     switch ([[viewButton selectedItem] tag]) {
         case 0:
+            [self openIndexSheet];
             break;
-        case 1:{
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"OpenIndexSheetForDirectory" ofType:@"scpt"];
-
-            if (path) {
-                NSAppleScript *script = [[[NSAppleScript alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:nil]autorelease];
-                [script executeAndReturnError:nil];
-            }
+        case 1:
+            NSLog(@"Do nothing");
             break;
-		}
-        case 2:{
-            NSString *folder = [DownloadDirectory stringByAppendingPathComponent: self.board];
-            if (folder != nil) {
-                [[NSWorkspace sharedWorkspace] openFile:folder];
-            }
+        case 2:
+            [self openDownloadDirectory];
             break;
-		}
         default:
             break;
     }
 }
 
-- (NSInteger) numberOfItemsInComboBox: (NSComboBox *) aComboBox {
-#pragma unused (aComboBox)
-    return ([urls count]);
++ (void)showError:(NSString *)title withMessage:(NSString *)info {
+    NSAlert* alert = [NSAlert new];
+    [alert setMessageText: title];
+    [alert setInformativeText: info];
+    [alert setAlertStyle: NSCriticalAlertStyle];
+    [alert runModal];
+    [alert release];
 }
-- (id) comboBox: (NSComboBox *) aComboBox objectValueForItemAtIndex: (NSInteger) index {
-#pragma unused (aComboBox)
-    return ([urls objectAtIndex:index]);
-}
-- (NSUInteger) comboBox: (NSComboBox *) aComboBox indexOfItemWithStringValue: (NSString *) string {
-#pragma unused (aComboBox)
-    return ([urls indexOfObject:string]);
-}
-
-- (NSString *) firstGenreMatchingPrefix: (NSString *) prefix {
-    NSString *string = nil;
-    NSString *lowercasePrefix = [prefix lowercaseString];
-    NSEnumerator *stringEnum = [urls objectEnumerator];
-
-    while ( (string = [stringEnum nextObject]) )
-        if ([[string lowercaseString] hasPrefix:lowercasePrefix] ) {
-            return (string) ;
-        }
-
-    return (nil);
-} // firstGenreMatchingPrefix
-
-- (NSString *) comboBox: (NSComboBox *) aComboBox completedString: (NSString *) inputString {
-#pragma unused (aComboBox)
-    // This method is received after each character typed by the user, because we have checked the "completes" flag for
-    // genreComboBox in IB.
-    // Given the inputString the user has typed, see if we can find a genre with the prefix, and return it as the suggested complete
-    // string.
-    NSString *candidate = [self firstGenreMatchingPrefix:inputString];
-    return (candidate ? candidate : inputString);
-} // urls
 
 @end
