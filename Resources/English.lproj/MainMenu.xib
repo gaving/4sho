@@ -21,8 +21,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="372"/>
 			<integer value="57"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1321,10 +1321,10 @@
 				<string key="NSName">_NSMainMenu</string>
 			</object>
 			<object class="NSWindowTemplate" id="972006081">
-				<int key="NSWindowStyleMask">263</int>
+				<int key="NSWindowStyleMask">4353</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{335, 688}, {450, 62}}</string>
-				<int key="NSWTFlags">1954029568</int>
+				<string key="NSWindowRect">{{685, 592}, {450, 62}}</string>
+				<int key="NSWTFlags">1952980992</int>
 				<string key="NSWindowTitle">4sho'</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
@@ -1342,7 +1342,7 @@
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSComboBoxCell" key="NSCell" id="1010271817">
 								<int key="NSCellFlags">347209281</int>
-								<int key="NSCellFlags2">268436480</int>
+								<int key="NSCellFlags2">1342178368</int>
 								<string key="NSContents"/>
 								<object class="NSFont" key="NSSupport" id="250171631">
 									<string key="NSName">LucidaGrande</string>
@@ -1354,13 +1354,8 @@
 								<bool key="NSDrawsBackground">YES</bool>
 								<int key="NSTextBezelStyle">1</int>
 								<object class="NSColor" key="NSBackgroundColor">
-									<int key="NSColorSpace">6</int>
-									<string key="NSCatalogName">System</string>
-									<string key="NSColorName">textBackgroundColor</string>
-									<object class="NSColor" key="NSColor" id="1017347086">
-										<int key="NSColorSpace">3</int>
-										<bytes key="NSWhite">MQA</bytes>
-									</object>
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC45NjA5NTk1MzUxIDEgMC45ODgwMDQ4NTA0AA</bytes>
 								</object>
 								<object class="NSColor" key="NSTextColor" id="657546137">
 									<int key="NSColorSpace">6</int>
@@ -1373,9 +1368,7 @@
 								</object>
 								<int key="NSVisibleItemCount">5</int>
 								<bool key="NSHasVerticalScroller">YES</bool>
-								<bool key="NSUsesDataSource">YES</bool>
 								<bool key="NSCompletes">YES</bool>
-								<nil key="NSDataSource"/>
 								<reference key="NSDelegate" ref="437374919"/>
 								<object class="NSComboTableView" key="NSTableView" id="224825822">
 									<reference key="NSNextResponder"/>
@@ -1404,7 +1397,10 @@
 													<int key="NSColorSpace">3</int>
 													<bytes key="NSWhite">MC4zMzMzMzI5ODU2AA</bytes>
 												</object>
-												<reference key="NSTextColor" ref="1017347086"/>
+												<object class="NSColor" key="NSTextColor">
+													<int key="NSColorSpace">3</int>
+													<bytes key="NSWhite">MQA</bytes>
+												</object>
 											</object>
 											<object class="NSTextFieldCell" key="NSDataCell">
 												<int key="NSCellFlags">338820672</int>
@@ -1444,6 +1440,7 @@
 									<string key="NSAction">tableViewAction:</string>
 									<int key="NSTvFlags">-767524864</int>
 									<reference key="NSDelegate" ref="1010271817"/>
+									<reference key="NSDataSource" ref="1010271817"/>
 									<reference key="NSTarget" ref="1010271817"/>
 									<int key="NSColumnAutoresizingStyle">1</int>
 									<int key="NSDraggingSourceMaskForLocal">15</int>
@@ -1452,7 +1449,6 @@
 									<int key="NSTableViewDraggingDestinationStyle">0</int>
 								</object>
 							</object>
-							<nil key="NSDataSource"/>
 						</object>
 						<object class="NSButton" id="727651712">
 							<reference key="NSNextResponder" ref="439893737"/>
@@ -3735,6 +3731,10 @@
 					<string>57.ImportedFromIB2</string>
 					<string>57.editorWindowContentRectSynchronizationRect</string>
 					<string>571.IBPluginDependency</string>
+					<string>571.IBViewIntegration.shadowBlurRadius</string>
+					<string>571.IBViewIntegration.shadowColor</string>
+					<string>571.IBViewIntegration.shadowOffsetHeight</string>
+					<string>571.IBViewIntegration.shadowOffsetWidth</string>
 					<string>572.IBPluginDependency</string>
 					<string>575.IBPluginDependency</string>
 					<string>578.IBPluginDependency</string>
@@ -3906,9 +3906,9 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
-					<string>{{617, 671}, {450, 62}}</string>
+					<string>{{514, 642}, {450, 62}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{617, 671}, {450, 62}}</string>
+					<string>{{514, 642}, {450, 62}}</string>
 					<integer value="1"/>
 					<string>{{33, 99}, {480, 360}}</string>
 					<string>{3.40282e+38, 3.40282e+38}</string>
@@ -4003,6 +4003,10 @@
 					<integer value="1"/>
 					<string>{{23, 794}, {245, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<real value="0.0"/>
+					<reference ref="743563444"/>
+					<real value="0.0"/>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

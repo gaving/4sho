@@ -11,7 +11,7 @@
 			<string key="NS.object.0">804</string>
 		</object>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="279"/>
+			<integer value="99"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -31,50 +31,16 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSUserDefaultsController" id="626763282">
-				<array class="NSMutableArray" key="NSDeclaredKeys">
-					<string>downloadDestination</string>
-				</array>
 				<bool key="NSSharedInstance">YES</bool>
 			</object>
 			<object class="NSCustomView" id="152121082">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSButton" id="647587121">
-						<reference key="NSNextResponder" ref="152121082"/>
-						<int key="NSvFlags">264</int>
-						<string key="NSFrame">{{133, 48}, {209, 18}}</string>
-						<reference key="NSSuperview" ref="152121082"/>
-						<bool key="NSEnabled">YES</bool>
-						<object class="NSButtonCell" key="NSCell" id="625286515">
-							<int key="NSCellFlags">67239424</int>
-							<int key="NSCellFlags2">131072</int>
-							<string key="NSContents">Show icon in dock</string>
-							<object class="NSFont" key="NSSupport">
-								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">11</double>
-								<int key="NSfFlags">3100</int>
-							</object>
-							<reference key="NSControlView" ref="647587121"/>
-							<int key="NSButtonFlags">1211912703</int>
-							<int key="NSButtonFlags2">2</int>
-							<object class="NSCustomResource" key="NSNormalImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">NSSwitch</string>
-							</object>
-							<object class="NSButtonImageSource" key="NSAlternateImage">
-								<string key="NSImageName">NSSwitch</string>
-							</object>
-							<string key="NSAlternateContents"/>
-							<string key="NSKeyEquivalent"/>
-							<int key="NSPeriodicDelay">200</int>
-							<int key="NSPeriodicInterval">25</int>
-						</object>
-					</object>
 					<object class="NSPopUpButton" id="42565390">
 						<reference key="NSNextResponder" ref="152121082"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{133, 89}, {239, 26}}</string>
+						<string key="NSFrame">{{133, 16}, {239, 26}}</string>
 						<reference key="NSSuperview" ref="152121082"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSPopUpButtonCell" key="NSCell" id="23529580">
@@ -151,7 +117,7 @@
 					<object class="NSTextField" id="475731288">
 						<reference key="NSNextResponder" ref="152121082"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{17, 96}, {108, 17}}</string>
+						<string key="NSFrame">{{17, 23}, {108, 17}}</string>
 						<reference key="NSSuperview" ref="152121082"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="986762404">
@@ -181,7 +147,7 @@
 						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{406, 133}</string>
+				<string key="NSFrameSize">{403, 60}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSMutableString" key="NSClassName">
 					<characters key="NS.bytes">NSView</characters>
@@ -214,26 +180,6 @@
 						<reference key="destination" ref="82800105"/>
 					</object>
 					<int key="connectionID">284</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.showDockIcon</string>
-						<reference key="source" ref="647587121"/>
-						<reference key="destination" ref="626763282"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="647587121"/>
-							<reference key="NSDestination" ref="626763282"/>
-							<string key="NSLabel">value: values.showDockIcon</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.showDockIcon</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">343</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -300,7 +246,6 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="475731288"/>
 							<reference ref="42565390"/>
-							<reference ref="647587121"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">General</string>
@@ -365,19 +310,6 @@
 						<reference key="object" ref="491227311"/>
 						<reference key="parent" ref="152641877"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">339</int>
-						<reference key="object" ref="647587121"/>
-						<array class="NSMutableArray" key="children">
-							<reference ref="625286515"/>
-						</array>
-						<reference key="parent" ref="152121082"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">340</int>
-						<reference key="object" ref="625286515"/>
-						<reference key="parent" ref="647587121"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -398,22 +330,9 @@
 				<string key="282.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="285.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<real value="1" key="285.ImportedFromIB2"/>
-				<object class="NSMutableDictionary" key="339.IBAttributePlaceholdersKey">
-					<string key="NS.key.0">ToolTip</string>
-					<object class="IBToolTipAttribute" key="NS.object.0">
-						<string key="name">ToolTip</string>
-						<reference key="object" ref="647587121"/>
-						<string key="toolTip">Toggle dock icon and menu visibility. (Requires relaunch)</string>
-					</object>
-				</object>
-				<string key="339.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<object class="NSAffineTransform" key="339.IBViewBoundsToFrameTransform">
-					<bytes key="NSTransformStruct">P4AAAL+AAABDBQAAwqQAAA</bytes>
-				</object>
-				<boolean value="YES" key="339.ImportedFromIB2"/>
 				<string key="72.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="YES" key="72.ImportedFromIB2"/>
-				<string key="99.IBEditorWindowLastContentRect">{{901, 473}, {406, 133}}</string>
+				<string key="99.IBEditorWindowLastContentRect">{{901, 546}, {403, 60}}</string>
 				<string key="99.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<object class="NSAffineTransform" key="99.IBViewBoundsToFrameTransform"/>
 				<boolean value="YES" key="99.ImportedFromIB2"/>
@@ -999,7 +918,6 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="NSMenuCheckmark">{9, 8}</string>
 			<string key="NSMenuMixedState">{7, 2}</string>
-			<string key="NSSwitch">{15, 15}</string>
 		</dictionary>
 	</data>
 </archive>
