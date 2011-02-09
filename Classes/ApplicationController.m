@@ -226,7 +226,14 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
             [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }
 
+-(void)download:(NSURLDownload *)download didCreateDestination:(NSString *)path {
+    NSMutableArray *fileNames = [NSMutableArray array];
+    [fileNames addObject:path];	
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"ImageAdded" object: fileNames];	
+}
+
 - (void)downloadDidFinish:(NSURLDownload *)download {
+
     [download release];
 
     self.currentCount = self.currentCount + 1;

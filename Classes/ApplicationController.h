@@ -20,6 +20,7 @@
     int totalCount;
     bool isDownloading;
     NSString *board;
+    NSString *_outputPath;
 }
 
 @property int currentCount;
