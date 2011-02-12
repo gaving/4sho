@@ -9,8 +9,18 @@
 #include <Carbon/Carbon.h>
 
 @implementation NSString (Empty)
-    - (BOOL) empty{
+    - (BOOL) empty {
         return ([[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length] == 0);
+    }
+@end
+
+@interface NSObject (PtrValueUtils)
+    - (NSValue *)ptrValue;
+@end
+
+@implementation NSObject (PtrValueUtils)
+    - (NSValue *)ptrValue {
+        return [NSValue valueWithPointer:self];
     }
 @end
 
@@ -35,10 +45,12 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
         }
     }
 
-    [self registerMyApp];
+    [self registerApp];
+
+    downloadURLsToLocalPaths = [NSMutableDictionary new];
 }
 
-- (void)registerMyApp {
+- (void)registerApp {
     [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
 }
@@ -210,6 +222,9 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
             }
         } else {
             NSLog(@"Skipping %@ (already exists)", matchedDest);
+            NSMutableArray *fileNames = [NSMutableArray array];
+            [fileNames addObject:matchedDest];
+            [[NSNotificationCenter defaultCenter] postNotificationName: @"ImageAdded" object: fileNames];
         }
     }
 
@@ -227,14 +242,16 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
 }
 
 -(void)download:(NSURLDownload *)download didCreateDestination:(NSString *)path {
-    NSMutableArray *fileNames = [NSMutableArray array];
-    [fileNames addObject:path];	
-    [[NSNotificationCenter defaultCenter] postNotificationName: @"ImageAdded" object: fileNames];	
+        [downloadURLsToLocalPaths setObject:path forKey:[download ptrValue]];
 }
 
 - (void)downloadDidFinish:(NSURLDownload *)download {
 
     [download release];
+
+    NSMutableArray *fileNames = [NSMutableArray array];
+    [fileNames addObject:[downloadURLsToLocalPaths objectForKey:[download ptrValue]]];
+    [[NSNotificationCenter defaultCenter] postNotificationName: @"ImageAdded" object: fileNames];
 
     self.currentCount = self.currentCount + 1;
     float floatVal = (float) (((float)self.currentCount / (float)self.totalCount)*100.0);
@@ -259,7 +276,6 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
     [progressIndicator setHidden: YES];
 }
 
-
 - (IBAction)preferences:(id)sender {
     [[PreferencesController sharedPrefsWindowController] showWindow:nil];
     (void)sender;
@@ -271,7 +287,9 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
     NSString *path = [[NSBundle mainBundle] pathForResource:@"OpenIndexSheetForDirectory" ofType:@"scpt"];
     if (path) {
         NSAppleScript *script = [[[NSAppleScript alloc] initWithContentsOfURL:[NSURL fileURLWithPath:path] error:&errors]autorelease];
-        NSAppleEventDescriptor *firstParameter = [NSAppleEventDescriptor descriptorWithString:@"/Users/gavin/Desktop/images/recent"];
+        NSString *downloadDestination = [[NSUserDefaults standardUserDefaults] stringForKey:@"downloadDestination"];
+        NSString *aliasPath = [[downloadDestination stringByExpandingTildeInPath] stringByAppendingPathComponent:@"recent"];
+        NSAppleEventDescriptor *firstParameter = [NSAppleEventDescriptor descriptorWithString:aliasPath];
         NSAppleEventDescriptor *parameters = [NSAppleEventDescriptor listDescriptor];
         [parameters insertDescriptor:firstParameter atIndex:1];
         ProcessSerialNumber psn = { 0, kCurrentProcess };
@@ -289,6 +307,7 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
         if (![script executeAppleEvent:event error:&errors]) {
             NSLog(@"%@", errors);
         }
+
         [script release];
     }
 }
@@ -305,13 +324,13 @@ NSString* const BoardRegexp = @"^http://boards.4chan.org/";
 
 - (void)openViewMethod {
     switch ([[viewButton selectedItem] tag]) {
-        case 0:
-            [self openIndexSheet];
-            break;
         case 1:
             NSLog(@"Do nothing");
             break;
         case 2:
+            [self openIndexSheet];
+            break;
+        case 3:
             [self openDownloadDirectory];
             break;
         default:

@@ -14,7 +14,6 @@
 		8688B05D12FC6AAE008D34D9 /* DBPrefsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8688B05A12FC6AAE008D34D9 /* DBPrefsWindowController.m */; };
 		8688B05E12FC6AAE008D34D9 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8688B05C12FC6AAE008D34D9 /* PreferencesController.m */; };
 		8688B07812FC6C88008D34D9 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8688B07712FC6C87008D34D9 /* Preferences.nib */; };
-		86B998B7130318E0008D8891 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B998B6130318E0008D8891 /* ImageDownloader.m */; };
 		86E58AAC1165E22B009D41A1 /* creature.icns in Resources */ = {isa = PBXBuildFile; fileRef = 86E58AAB1165E22B009D41A1 /* creature.icns */; };
 		86E96C5B115EC924003F07CE /* ApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E96C5A115EC924003F07CE /* ApplicationController.m */; };
 		86E96D50115EDC56003F07CE /* OpenIndexSheetForDirectory.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 86E96D4D115EDC33003F07CE /* OpenIndexSheetForDirectory.scpt */; };
@@ -51,8 +50,8 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		8626394A13009CDA00705E01 /* ImageBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageBrowserController.h; sourceTree = "<group>"; };
-		8626394B13009CDA00705E01 /* ImageBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageBrowserController.m; sourceTree = "<group>"; };
+		8626394A13009CDA00705E01 /* ImageBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageBrowserController.h; path = Classes/ImageBrowserController.h; sourceTree = "<group>"; };
+		8626394B13009CDA00705E01 /* ImageBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageBrowserController.m; path = Classes/ImageBrowserController.m; sourceTree = "<group>"; };
 		8626395613009E6E00705E01 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		8688B05912FC6AAE008D34D9 /* DBPrefsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBPrefsWindowController.h; path = Classes/DBPrefsWindowController.h; sourceTree = "<group>"; };
 		8688B05A12FC6AAE008D34D9 /* DBPrefsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBPrefsWindowController.m; path = Classes/DBPrefsWindowController.m; sourceTree = "<group>"; };
@@ -60,8 +59,6 @@
 		8688B05C12FC6AAE008D34D9 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Classes/PreferencesController.m; sourceTree = "<group>"; };
 		8688B06A12FC6B24008D34D9 /* ApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationController.h; path = Classes/ApplicationController.h; sourceTree = "<group>"; };
 		8688B07712FC6C87008D34D9 /* Preferences.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = Preferences.nib; path = Resources/Preferences.nib; sourceTree = "<group>"; };
-		86B998B5130318E0008D8891 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
-		86B998B6130318E0008D8891 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 		86E58AAB1165E22B009D41A1 /* creature.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = creature.icns; path = Resources/creature.icns; sourceTree = "<group>"; };
 		86E96C5A115EC924003F07CE /* ApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationController.m; path = Classes/ApplicationController.m; sourceTree = "<group>"; };
 		86E96D4D115EDC33003F07CE /* OpenIndexSheetForDirectory.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.scpt; name = OpenIndexSheetForDirectory.scpt; path = Resources/OpenIndexSheetForDirectory.scpt; sourceTree = "<group>"; };
@@ -101,8 +98,6 @@
 				86E96C5A115EC924003F07CE /* ApplicationController.m */,
 				8688B06A12FC6B24008D34D9 /* ApplicationController.h */,
 				256AC3D90F4B6AC300CF3369 /* _sheetAppDelegate.m */,
-				86B998B5130318E0008D8891 /* ImageDownloader.h */,
-				86B998B6130318E0008D8891 /* ImageDownloader.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -262,7 +257,6 @@
 				8688B05D12FC6AAE008D34D9 /* DBPrefsWindowController.m in Sources */,
 				8688B05E12FC6AAE008D34D9 /* PreferencesController.m in Sources */,
 				8626394C13009CDA00705E01 /* ImageBrowserController.m in Sources */,
-				86B998B7130318E0008D8891 /* ImageDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

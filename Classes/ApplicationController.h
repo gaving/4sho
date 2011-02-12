@@ -1,10 +1,11 @@
 //
 //  ApplicationController.h
-//  4sheet
+//  4sho
 //
 
+#import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-
+#import <Quartz/Quartz.h>
 
 @interface NSString (Empty)
     - (BOOL) empty;
@@ -21,6 +22,7 @@
     bool isDownloading;
     NSString *board;
     NSString *_outputPath;
+    NSMutableDictionary *downloadURLsToLocalPaths;
 }
 
 @property int currentCount;
@@ -37,7 +39,7 @@
 - (void)processImages:(NSArray *)imageURLs;
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent;
 
-- (void)registerMyApp;
+- (void)registerApp;
 - (void)openViewMethod;
 - (void)performAsyncLoadWithURL:(NSURL*)url;
 - (void)downloadURL:(NSArray *)urls;
